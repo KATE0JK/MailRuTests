@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Linq;
+using Assert = NUnit.Framework.Assert;
 
 namespace MailRuTests
 {
-    [TestClass]
+    [TestFixture]
     public class MailRuTest
     {
         IWebDriver driver;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanUp()
         {
             driver.Close();
         }
 
-        [TestMethod]
+        [Test]
         public void NewEmailTest()
         {
             string addressTo = "Kate_k@mail.ru";
