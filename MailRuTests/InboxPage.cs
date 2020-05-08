@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace MailRuTests
 {
     class InboxPage
     {
         private IWebDriver _driver;
+        private WebDriverWait _wait;
+
         private const string UserIsLogedInIdSelector = "PH_user-email";
         private const string NewEmailButtonSelector = "span.compose-button__wrapper";
         private const string LogOutButtonSelector = "PH_logoutLink";
@@ -17,9 +20,10 @@ namespace MailRuTests
         IWebElement searchLogOutButton;
         IReadOnlyCollection<IWebElement> searchEmailList;
 
-        public InboxPage(IWebDriver driver)
+        public InboxPage(IWebDriver driver, WebDriverWait wait)
         {
             _driver = driver;
+            _wait = wait; ;
         }
 
         public bool UserIsLogedIn()
@@ -35,7 +39,24 @@ namespace MailRuTests
 
         public NewEmailPage ClickNewEmailButton()
         {
-            searchNewEmailButton = _driver.FindElement(By.CssSelector(NewEmailButtonSelector));
+            var element = _wait.Until(condition =>
+            {
+                try
+                {
+                    searchNewEmailButton = _driver.FindElement(By.CssSelector(NewEmailButtonSelector));
+                    return searchNewEmailButton.Displayed;
+                }
+
+                catch (StaleElementReferenceException)
+                {
+                    return false;
+                }
+
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            });
             searchNewEmailButton.Click();
 
             NewEmailPage newEmailPage = new NewEmailPage(_driver);

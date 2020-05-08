@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+
 
 namespace MailRuTests
 {
@@ -8,20 +9,24 @@ namespace MailRuTests
     {
         private string _url;
         private IWebDriver _driver;
+        private WebDriverWait _wait;
 
         private const string searchLoginIdSelectorById = "mailbox:login";
         private const string searchNextButtonSelectorByCss = "input.o-control";
         private const string searchPasswordIdSelectorById = "mailbox:password";
+        private const string headerToBeDisplayedSelectorById = "mailbox:mailHeaderSecondStepEmail";
 
         IWebElement searchLoginId;
         IWebElement searchNextButton;
         IWebElement searchPasswordId;
+        IWebElement headerToBeDisplayed;
 
-        public LoginPage(string url,IWebDriver driver)
+        public LoginPage(string url,IWebDriver driver, WebDriverWait wait)
         {
             _url = url;
             _driver = driver;
-        }
+            _wait = wait;
+            }
 
         public InboxPage Login(string login, string pw)
         {
@@ -32,8 +37,26 @@ namespace MailRuTests
 
             searchNextButton = _driver.FindElement(By.CssSelector(searchNextButtonSelectorByCss));
             searchNextButton.Click();
+            //_driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            var element = _wait.Until(condition =>
+            {
+                try
+                {
+                    headerToBeDisplayed = _driver.FindElement(By.Id(headerToBeDisplayedSelectorById));
+                    return headerToBeDisplayed.Displayed;
+                }
 
-            _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
+                catch (StaleElementReferenceException)
+                {
+                    return false;
+                }
+
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            });
 
             searchPasswordId = _driver.FindElement(By.Id(searchPasswordIdSelectorById));
             searchPasswordId.SendKeys(pw);
@@ -42,7 +65,7 @@ namespace MailRuTests
 
             _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
 
-            InboxPage inboxPage = new InboxPage(_driver);
+            InboxPage inboxPage = new InboxPage(_driver, _wait);
 
             return inboxPage;
         }

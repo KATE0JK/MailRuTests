@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System.Linq;
 using Assert = NUnit.Framework.Assert;
 
@@ -12,12 +13,15 @@ namespace MailRuTests
     public class MailRuTest
     {
         IWebDriver driver;
+        WebDriverWait wait;
 
         [SetUp]
         public void TestInitialize()
         {
             driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(1000);
+            //driver.Manage().Timeouts().ImplicitWait = new TimeSpan(1000);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
         }
 
         [TearDown]
@@ -33,7 +37,7 @@ namespace MailRuTests
             string subject = "TestEmailSubject-" + DateTime.Now;
             string body = "TestEmailBody-" + DateTime.Now;
 
-            LoginPage loginPage = new LoginPage(UserConstantData.URL,driver);
+            LoginPage loginPage = new LoginPage(UserConstantData.URL,driver,wait);
 
             InboxPage inboxPage = loginPage.Login(UserConstantData.Login, UserConstantData.Password);
 
