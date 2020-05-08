@@ -9,6 +9,14 @@ namespace MailRuTests
         private string _url;
         private IWebDriver _driver;
 
+        private const string searchLoginIdSelectorById = "mailbox:login";
+        private const string searchNextButtonSelectorByCss = "input.o-control";
+        private const string searchPasswordIdSelectorById = "mailbox:password";
+
+        IWebElement searchLoginId;
+        IWebElement searchNextButton;
+        IWebElement searchPasswordId;
+
         public LoginPage(string url,IWebDriver driver)
         {
             _url = url;
@@ -19,15 +27,15 @@ namespace MailRuTests
         {
             _driver.Navigate().GoToUrl(_url);
 
-            IWebElement searchLoginId = _driver.FindElement(By.Id("mailbox:login"));
+            IWebElement searchLoginId = _driver.FindElement(By.Id(searchLoginIdSelectorById));
             searchLoginId.SendKeys(login);
 
-            IWebElement searchNextButton = _driver.FindElement(By.CssSelector("input.o-control"));
+            IWebElement searchNextButton = _driver.FindElement(By.CssSelector(searchNextButtonSelectorByCss));
             searchNextButton.Click();
 
             _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
 
-            IWebElement searchPasswordId = _driver.FindElement(By.Id("mailbox:password"));
+            IWebElement searchPasswordId = _driver.FindElement(By.Id(searchPasswordIdSelectorById));
             searchPasswordId.SendKeys(pw);
 
             searchNextButton.Click();

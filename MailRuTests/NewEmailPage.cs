@@ -11,6 +11,11 @@ namespace MailRuTests
         private const string NewEmailBodyField = ".editable-ibst cke_editable cke_editable_inline cke_contents_true cke_show_borders";
         private const string NewEmailSendButton = ".button2 button2_base button2_primary button2_hover-support js-shortcut";
 
+        IWebElement searchNewEmailToField;
+        IWebElement searchNewEmailSubjectField;
+        IWebElement searchNewEmailBodyField;
+        IWebElement searchNewEmailSendButton;
+
         public NewEmailPage(IWebDriver driver)
         {
             _driver = driver;
@@ -22,16 +27,16 @@ namespace MailRuTests
 
         public void SendNewEmail(string addressTo, string subject, string body)
         {
-            IWebElement searchNewEmailToField = _driver.FindElements(By.CssSelector(NewEmailToField))[0];
+            searchNewEmailToField = _driver.FindElements(By.CssSelector(NewEmailToField))[0];
             searchNewEmailToField.SendKeys(addressTo);
             
-            IWebElement searchNewEmailSubjectField = _driver.FindElements(By.CssSelector(NewEmailSubjectField))[1];
+            searchNewEmailSubjectField = _driver.FindElements(By.CssSelector(NewEmailSubjectField))[1];
             searchNewEmailSubjectField.SendKeys(subject);
 
-            IWebElement searchNewEmailBodyField = _driver.FindElement(By.CssSelector(NewEmailBodyField));
+            searchNewEmailBodyField = _driver.FindElement(By.CssSelector(NewEmailBodyField));
             searchNewEmailBodyField.SendKeys(body);
 
-            IWebElement searchNewEmailSendButton = _driver.FindElement(By.CssSelector(NewEmailSendButton));
+            searchNewEmailSendButton = _driver.FindElement(By.CssSelector(NewEmailSendButton));
             searchNewEmailSendButton.Click();
         }
     }

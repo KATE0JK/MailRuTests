@@ -7,6 +7,15 @@ namespace MailRuTests
     {
         private IWebDriver _driver;
         private const string UserIsLogedInIdSelector = "PH_user-email";
+        private const string NewEmailButtonSelector = "span.compose-button__wrapper";
+        private const string LogOutButtonSelector = "PH_logoutLink";
+        private const string senderSelector = ".ll-crpt";
+        private const string subjectSelector = ".ll-sj__normal";
+        private const string searchEmailListSelector = ".llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal";
+
+        IWebElement searchNewEmailButton;
+        IWebElement searchLogOutButton;
+        IReadOnlyCollection<IWebElement> searchEmailList;
 
         public InboxPage(IWebDriver driver)
         {
@@ -26,7 +35,7 @@ namespace MailRuTests
 
         public NewEmailPage ClickNewEmailButton()
         {
-            IWebElement searchNewEmailButton = _driver.FindElement(By.CssSelector("span.compose-button__wrapper"));
+            searchNewEmailButton = _driver.FindElement(By.CssSelector(NewEmailButtonSelector));
             searchNewEmailButton.Click();
 
             NewEmailPage newEmailPage = new NewEmailPage(_driver);
@@ -36,19 +45,19 @@ namespace MailRuTests
 
         public void LogOut()
         {
-            IWebElement searchLogOutButton = _driver.FindElement(By.Id("PH_logoutLink"));
+            searchLogOutButton = _driver.FindElement(By.Id(LogOutButtonSelector));
             searchLogOutButton.Click();
         }
 
         public List<Email> GetEmailList()
         {
-            IReadOnlyCollection<IWebElement> searchEmailList = _driver.FindElements(By.CssSelector(".llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal"));
+            searchEmailList = _driver.FindElements(By.CssSelector(searchEmailListSelector));
             List<Email> emails = new List<Email>();
 
             foreach (IWebElement e in searchEmailList)
             {
-                string sender = e.FindElement(By.CssSelector(".ll-crpt")).Text;
-                string subject = e.FindElement(By.CssSelector(".ll-sj__normal")).Text;
+                string sender = e.FindElement(By.CssSelector(senderSelector)).Text;
+                string subject = e.FindElement(By.CssSelector(subjectSelector)).Text;
 
                 Email email = new Email(sender, subject);
                 emails.Add(email);

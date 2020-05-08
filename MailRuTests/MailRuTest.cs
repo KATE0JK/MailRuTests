@@ -17,7 +17,7 @@ namespace MailRuTests
         public void TestInitialize()
         {
             driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
+            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(1000);
         }
 
         [TearDown]
