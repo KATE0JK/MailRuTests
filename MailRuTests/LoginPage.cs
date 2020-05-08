@@ -27,15 +27,15 @@ namespace MailRuTests
         {
             _driver.Navigate().GoToUrl(_url);
 
-            IWebElement searchLoginId = _driver.FindElement(By.Id(searchLoginIdSelectorById));
+            searchLoginId = _driver.FindElement(By.Id(searchLoginIdSelectorById));
             searchLoginId.SendKeys(login);
 
-            IWebElement searchNextButton = _driver.FindElement(By.CssSelector(searchNextButtonSelectorByCss));
+            searchNextButton = _driver.FindElement(By.CssSelector(searchNextButtonSelectorByCss));
             searchNextButton.Click();
 
             _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
 
-            IWebElement searchPasswordId = _driver.FindElement(By.Id(searchPasswordIdSelectorById));
+            searchPasswordId = _driver.FindElement(By.Id(searchPasswordIdSelectorById));
             searchPasswordId.SendKeys(pw);
 
             searchNextButton.Click();
