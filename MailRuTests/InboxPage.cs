@@ -59,7 +59,7 @@ namespace MailRuTests
             });
             searchNewEmailButton.Click();
 
-            NewEmailPage newEmailPage = new NewEmailPage(_driver);
+            NewEmailPage newEmailPage = new NewEmailPage(_driver,_wait);
 
             return newEmailPage;
         }

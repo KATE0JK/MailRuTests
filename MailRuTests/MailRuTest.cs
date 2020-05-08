@@ -45,8 +45,6 @@ namespace MailRuTests
 
             NewEmailPage newEmail = inboxPage.ClickNewEmailButton();
 
-            Assert.IsTrue(newEmail.NewEmailPopUpIsOpen());
-
             newEmail.SendNewEmail(addressTo, subject, body);
 
             List<Email> list = inboxPage.GetEmailList();
