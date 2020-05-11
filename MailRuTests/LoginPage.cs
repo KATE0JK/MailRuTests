@@ -38,7 +38,6 @@ namespace MailRuTests
             searchNextButton = _driver.FindElement(By.CssSelector(searchNextButtonSelectorByCss));
             searchNextButton.Click();
             //_driver.Manage().Timeouts().ImplicitWait = new TimeSpan(5000);
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             var element = _wait.Until(condition =>
             {
                 try

@@ -33,7 +33,7 @@ namespace MailRuTests
             {
                 var testName = TestContext.CurrentContext.Test.FullName;
                 var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                screenshot.SaveAsFile(@"c:\Screens" + testName + ".jpg", ScreenshotImageFormat.Jpeg);
+                screenshot.SaveAsFile(@"C:\Screens" + testName + ".jpg", ScreenshotImageFormat.Jpeg);
             }
         }
 

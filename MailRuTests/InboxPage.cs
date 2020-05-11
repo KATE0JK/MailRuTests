@@ -14,7 +14,7 @@ namespace MailRuTests
         private const string LogOutButtonSelector = "PH_logoutLink";
         private const string senderSelector = ".ll-crpt";
         private const string subjectSelector = ".ll-sj__normal";
-        private const string searchEmailListSelector = ".llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal";
+        private const string searchEmailListSelector = ".llc";
 
         IWebElement searchNewEmailButton;
         IWebElement searchLogOutButton;

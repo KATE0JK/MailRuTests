@@ -10,7 +10,7 @@ namespace MailRuTests
         private WebDriverWait _wait;
         private const string NewEmailToField = "div.contacts--1ofjA input.container--H9L5q.size_s--3_M-_";
         private const string NewEmailSubjectField = "div.subject__container--HWnat input.container--H9L5q.size_s--3_M-_";
-        private const string NewEmailBodyField = "div.editable-container-n8y5 div.cke_editable>div";
+        private const string NewEmailBodyField = "div[class*='editable-container']>div[class*='editable']";
         private const string NewEmailSendButton = ".compose-app__buttons>span.button2";
 
         IWebElement searchNewEmailToField;
@@ -47,7 +47,7 @@ namespace MailRuTests
 
             searchNewEmailToField.SendKeys(addressTo);
             
-            searchNewEmailSubjectField = _driver.FindElements(By.CssSelector(NewEmailSubjectField))[1];
+            searchNewEmailSubjectField = _driver.FindElements(By.CssSelector(NewEmailSubjectField))[0];
             searchNewEmailSubjectField.SendKeys(subject);
 
             searchNewEmailBodyField = _driver.FindElement(By.CssSelector(NewEmailBodyField));

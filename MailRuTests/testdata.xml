@@ -1,5 +1,5 @@
 ﻿<testdata>
-  <vars addressTo="Kate_k@mail.ru"
+  <vars addressTo="Kate_jk+1@mail.ru"
         subject = "TestEmailSubject 1"
         body = "TestEmailBody 1"/>
   <vars addressTo="Kate_jk@mail.ru"

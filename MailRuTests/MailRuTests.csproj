@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertTest.cs" />
     <Compile Include="BaseEmailTest.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="InboxPage.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="MailRuTest.cs" />
     <Compile Include="NewEmailPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleniumEasyAlertsPage.cs" />
     <Compile Include="UserConstantData.cs" />
   </ItemGroup>
   <ItemGroup>
