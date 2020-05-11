@@ -5,12 +5,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Linq;
+using NUnit.Framework.Interfaces;
 using Assert = NUnit.Framework.Assert;
+using MailRuTests2;
 
 namespace MailRuTests
 {
     [TestFixture]
-    public class MailRuTest
+    public class MailRuTest : BaseEmailTest
     {
         IWebDriver driver;
         WebDriverWait wait;
@@ -24,6 +26,17 @@ namespace MailRuTests
 
         }
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                var testName = TestContext.CurrentContext.Test.FullName;
+                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                screenshot.SaveAsFile(@"c:\Screens" + testName + ".jpg", ScreenshotImageFormat.Jpeg);
+            }
+        }
+
         [TearDown]
         public void TestCleanUp()
         {
@@ -31,11 +44,13 @@ namespace MailRuTests
         }
 
         [Test]
-        public void NewEmailTest()
+        [TestCaseSource(nameof(EmailParameters))]
+        public void NewEmailTest(string addressTo, string subject, string body)
+        //public void NewEmailTest()
         {
-            string addressTo = "Kate_k@mail.ru";
-            string subject = "TestEmailSubject-" + DateTime.Now;
-            string body = "TestEmailBody-" + DateTime.Now;
+            //string addressTo = "Kate_k@mail.ru";
+            //string subject = "TestEmailSubject-" + DateTime.Now;
+            //string body = "TestEmailBody-" + DateTime.Now;
 
             LoginPage loginPage = new LoginPage(UserConstantData.URL,driver,wait);
 
