@@ -1,0 +1,12 @@
+{
+  "uuid": "0-1001_0f20e7586cc942868fb5a24448b5dc6a-0-1000-run1-container",
+  "name": "MailRuTests.AlertTest",
+  "children": [
+    "0-1001_0f20e7586cc942868fb5a24448b5dc6a-0-1000-test-run1"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1589920818982,
+  "stop": 1589920823084
+}

@@ -1,0 +1,12 @@
+{
+  "uuid": "0-1003_d3d0152c97f340fd9a8b186f7f9a891e-0-1002-run1-container",
+  "name": "MailRuTests.MailRuTest",
+  "children": [
+    "0-1003_d3d0152c97f340fd9a8b186f7f9a891e-0-1002-test-run1"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1589920828337,
+  "stop": 1589920845227
+}

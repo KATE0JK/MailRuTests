@@ -1,0 +1,64 @@
+{
+  "uuid": "0-1001_0f20e7586cc942868fb5a24448b5dc6a-0-1000-test-run1",
+  "historyId": "MailRuTests.AlertTest.AlertTextTest",
+  "fullName": "MailRuTests.AlertTest.AlertTextTest",
+  "labels": [
+    {
+      "name": "host",
+      "value": "DESKTOP-2LAPFD6"
+    },
+    {
+      "name": "testClass",
+      "value": "MailRuTests.AlertTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "AlertTextTest"
+    },
+    {
+      "name": "package",
+      "value": "MailRuTests.AlertTest"
+    },
+    {
+      "name": "suite",
+      "value": "TestSuite1"
+    },
+    {
+      "name": "subSuite",
+      "value": "AlertTest"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "Katya Nikitina"
+    },
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    }
+  ],
+  "links": [
+    {
+      "name": "https://www.onliner.by/",
+      "url": "https://www.onliner.by/",
+      "type": "link"
+    }
+  ],
+  "name": "AlertTextTest",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "description": "Test 1",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1589920818982,
+  "stop": 1589920823084
+}

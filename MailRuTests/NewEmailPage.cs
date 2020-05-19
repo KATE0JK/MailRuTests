@@ -12,6 +12,7 @@ namespace MailRuTests
         private const string NewEmailSubjectField = "div.subject__container--HWnat input.container--H9L5q.size_s--3_M-_";
         private const string NewEmailBodyField = "div[class*='editable-container']>div[class*='editable']";
         private const string NewEmailSendButton = ".compose-app__buttons>span.button2";
+//        private const string ConfirmationPopUpCloseButtonCss = ".button2_close.button2_hover-support";
 
         IWebElement searchNewEmailToField;
         IWebElement searchNewEmailSubjectField;

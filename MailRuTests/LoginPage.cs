@@ -1,4 +1,5 @@
 ﻿using System;
+//using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -28,6 +29,7 @@ namespace MailRuTests
             _wait = wait;
             }
 
+        //[AllureStep("Try login with credentials (&login&, &pw&)")]
         public InboxPage Login(string login, string pw)
         {
             _driver.Navigate().GoToUrl(_url);

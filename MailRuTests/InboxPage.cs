@@ -72,12 +72,24 @@ namespace MailRuTests
 
         public List<Email> GetEmailList()
         {
-            searchEmailList = _driver.FindElements(By.CssSelector(searchEmailListSelector));
+            var element=_wait.Until(condition=>
+            {
+                try
+                {
+                    searchEmailList = _driver.FindElements(By.CssSelector(searchEmailListSelector));
+                    return true;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            });
+
             List<Email> emails = new List<Email>();
 
             foreach (IWebElement e in searchEmailList)
             {
-                string sender = e.FindElement(By.CssSelector(senderSelector)).Text;
+                string sender = e.FindElement(By.CssSelector(senderSelector)).GetAttribute("title");
                 string subject = e.FindElement(By.CssSelector(subjectSelector)).Text;
 
                 Email email = new Email(sender, subject);

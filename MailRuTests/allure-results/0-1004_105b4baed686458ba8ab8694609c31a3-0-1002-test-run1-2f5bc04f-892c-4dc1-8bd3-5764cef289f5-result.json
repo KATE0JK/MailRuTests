@@ -1,0 +1,79 @@
+{
+  "uuid": "0-1004_105b4baed686458ba8ab8694609c31a3-0-1002-test-run1",
+  "historyId": "MailRuTests.MailRuTest.NewEmailTest(\"kate_jk@mail.ru\",\"TestEmailSubject 2\",\"TestEmailBody 2\") (\"kate_jk@mail.ru\", \"TestEmailSubject 2\", \"TestEmailBody 2\")",
+  "fullName": "MailRuTests.MailRuTest.NewEmailTest(\"kate_jk@mail.ru\",\"TestEmailSubject 2\",\"TestEmailBody 2\") (\"kate_jk@mail.ru\", \"TestEmailSubject 2\", \"TestEmailBody 2\")",
+  "labels": [
+    {
+      "name": "host",
+      "value": "DESKTOP-2LAPFD6"
+    },
+    {
+      "name": "testClass",
+      "value": "MailRuTests.MailRuTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "NewEmailTest"
+    },
+    {
+      "name": "package",
+      "value": "MailRuTests.MailRuTest"
+    },
+    {
+      "name": "suite",
+      "value": "TestSuite1"
+    },
+    {
+      "name": "subSuite",
+      "value": "MailRuTest"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "Katya Nikitina"
+    },
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    }
+  ],
+  "links": [
+    {
+      "name": "https://www.onliner.by/",
+      "url": "https://www.onliner.by/",
+      "type": "link"
+    }
+  ],
+  "name": "NewEmailTest(\"kate_jk@mail.ru\",\"TestEmailSubject 2\",\"TestEmailBody 2\")",
+  "status": "failed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "OpenQA.Selenium.WebDriverException : invalid session id\r\nTearDown : OpenQA.Selenium.WebDriverException : invalid session id",
+    "trace": "   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)\r\n   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   в OpenQA.Selenium.Remote.RemoteWebDriver.set_Url(String value)\r\n   в OpenQA.Selenium.Remote.RemoteNavigator.GoToUrl(String url)\r\n   в MailRuTests.LoginPage.Login(String login, String pw) в C:\\Users\\77611\\source\\repos\\MailRuTests\\MailRuTests\\LoginPage.cs:строка 35\r\n   в MailRuTests.MailRuTest.NewEmailTest(String addressTo, String subject, String body) в C:\\Users\\77611\\source\\repos\\MailRuTests\\MailRuTests\\MailRuTest.cs:строка 68\r\n--TearDown\r\n   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)\r\n   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   в OpenQA.Selenium.Remote.RemoteWebDriver.GetScreenshot()\r\n   в MailRuTests.MailRuTest.TestCleanUp() в C:\\Users\\77611\\source\\repos\\MailRuTests\\MailRuTests\\MailRuTest.cs:строка 46"
+  },
+  "stage": "finished",
+  "description": "Test 2",
+  "steps": [],
+  "attachments": [],
+  "parameters": [
+    {
+      "name": "Parameter #1, String",
+      "value": "kate_jk@mail.ru"
+    },
+    {
+      "name": "Parameter #2, String",
+      "value": "TestEmailSubject 2"
+    },
+    {
+      "name": "Parameter #3, String",
+      "value": "TestEmailBody 2"
+    }
+  ],
+  "start": 1589920845227,
+  "stop": 1589920845326
+}

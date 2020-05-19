@@ -1,27 +1,32 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using Assert = NUnit.Framework.Assert;
+using Allure.NUnit.Attributes;
+using Allure.Commons.Model;
 
 namespace MailRuTests
 {
+    [AllureSuite("TestSuite1")]
     [TestFixture]
-    class AlertTest
+    public class AlertTest: BaseAllureReport
     {
-        IWebDriver driver;
         WebDriverWait wait;
         private const string Url = "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html";
+
+        public AlertTest():base(false)
+        {
+
+        }
 
         [SetUp]
         public void TestInitialize()
         {
-            driver = new FirefoxDriver();
             //driver.Manage().Timeouts().ImplicitWait = new TimeSpan(1000);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            driver.Navigate().GoToUrl(Url);
+            wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            Driver.Navigate().GoToUrl(Url);
         }
 
         [OneTimeTearDown]
@@ -30,7 +35,7 @@ namespace MailRuTests
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 var testName = TestContext.CurrentContext.Test.FullName;
-                var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
                 screenshot.SaveAsFile(@"c:\Screens" + testName + ".jpg", ScreenshotImageFormat.Jpeg);
             }
         }
@@ -38,13 +43,18 @@ namespace MailRuTests
         [TearDown]
         public void TestCleanUp()
         {
-            driver.Close();
+            Driver.Close();
         }
 
         [Test]
+        [AllureSubSuite ("AlertTest")]
+        [AllureSeverity(SeverityLevel.Critical)]
+        [AllureLink("https://www.onliner.by/")]
+        [AllureTest ("Test 1")]
+        [AllureOwner ("Katya Nikitina")]
         public void AlertTextTest()
         {
-            SeleniumEasyAlertsPage seleniumEasyAlertsPage = new SeleniumEasyAlertsPage(driver,wait);
+            SeleniumEasyAlertsPage seleniumEasyAlertsPage = new SeleniumEasyAlertsPage(Driver,wait);
             seleniumEasyAlertsPage.ClickOnAlertBoxButton();
             Assert.AreEqual("I am an alert box!",seleniumEasyAlertsPage.GetAlertText());
             seleniumEasyAlertsPage.ConfirmAlert();

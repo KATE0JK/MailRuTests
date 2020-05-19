@@ -2,11 +2,18 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using MailRuTests;
 
 namespace MailRuTests2
 {
-    public abstract class BaseEmailTest
+    public abstract class BaseEmailTest: BaseAllureReport
     {
+
+        public BaseEmailTest():base(true)
+        {
+
+        }
+
         protected static IEnumerable EmailParameters
         {
             get
