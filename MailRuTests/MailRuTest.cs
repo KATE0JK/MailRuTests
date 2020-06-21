@@ -9,6 +9,8 @@ using Assert = NUnit.Framework.Assert;
 using MailRuTests2;
 using Allure.NUnit.Attributes;
 using Allure.Commons.Model;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 
 namespace MailRuTests
 {
@@ -57,7 +59,6 @@ namespace MailRuTests
         [AllureTest("Test 2")]
         [TestCaseSource(nameof(EmailParameters))]
         public void NewEmailTest(string addressTo, string subject, string body)
-        //public void NewEmailTest()
         {
             //string addressTo = "Kate_k@mail.ru";
             //string subject = "TestEmailSubject-" + DateTime.Now;
@@ -76,6 +77,22 @@ namespace MailRuTests
             List<Email> list = inboxPage.GetEmailList();
 
             Assert.IsTrue(list.Any(e => e.Sender.Contains(addressTo) && e.Subject.Contains(subject)));
+        }
+
+        protected override DriverOptions GetDriverOptions()
+        {
+            var chromeOptions = new ChromeOptions();
+
+            chromeOptions.AddAdditionalCapability(CapabilityType.Version, "latest");
+            chromeOptions.AddAdditionalCapability(CapabilityType.EnableProfiling, true);
+            chromeOptions.AddAdditionalCapability(CapabilityType.Platform, "WIN10");
+
+            return chromeOptions;
+        }
+
+        protected override Uri GetUriToRunTests()
+        {
+            return new Uri("http://192.168.0.50:8080");
         }
     }
 }

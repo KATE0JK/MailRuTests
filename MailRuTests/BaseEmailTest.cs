@@ -6,10 +6,9 @@ using MailRuTests;
 
 namespace MailRuTests2
 {
-    public abstract class BaseEmailTest: BaseAllureReport
+    public abstract class BaseEmailTest : BaseAllureReport
     {
-
-        public BaseEmailTest():base(true)
+        public BaseEmailTest() : base()
         {
 
         }

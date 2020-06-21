@@ -1,29 +1,21 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using Allure.Commons;
+using OpenQA.Selenium.Remote;
+using System;
 
 namespace MailRuTests
 {
-    public abstract class BaseAllureReport: AllureReport
+    public abstract class BaseAllureReport : AllureReport
     {
-        private IWebDriver driver;
-
-        public BaseAllureReport(bool isChrome)
+        public BaseAllureReport()
         {
-            if (isChrome)
-            {
-                driver = new ChromeDriver();
-            }
-            else
-            {
-                driver = new FirefoxDriver();
-            }
-        }
+            Driver = new RemoteWebDriver(GetUriToRunTests(), GetDriverOptions().ToCapabilities());
+        } 
 
-        public IWebDriver Driver
-        {
-            get { return driver; }
-        }
+        public IWebDriver Driver { get; }
+
+        protected abstract DriverOptions GetDriverOptions();
+
+        protected abstract Uri GetUriToRunTests();
     }
 }

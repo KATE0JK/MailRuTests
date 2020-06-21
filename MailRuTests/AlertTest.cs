@@ -6,20 +6,18 @@ using NUnit.Framework.Interfaces;
 using Assert = NUnit.Framework.Assert;
 using Allure.NUnit.Attributes;
 using Allure.Commons.Model;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 
 namespace MailRuTests
 {
     [AllureSuite("TestSuite1")]
     [TestFixture]
-    public class AlertTest: BaseAllureReport
+    public class AlertTest : BaseAllureReport
     {
         WebDriverWait wait;
         private const string Url = "https://www.seleniumeasy.com/test/javascript-alert-box-demo.html";
 
-        public AlertTest():base(false)
-        {
-
-        }
 
         [SetUp]
         public void TestInitialize()
@@ -58,6 +56,21 @@ namespace MailRuTests
             seleniumEasyAlertsPage.ClickOnAlertBoxButton();
             Assert.AreEqual("I am an alert box!",seleniumEasyAlertsPage.GetAlertText());
             seleniumEasyAlertsPage.ConfirmAlert();
+        }
+
+        protected override DriverOptions GetDriverOptions()
+        {
+            var firefoxOptions = new FirefoxOptions();
+
+            firefoxOptions.AddAdditionalCapability(CapabilityType.Version, "latest");
+            firefoxOptions.AddAdditionalCapability(CapabilityType.Platform, "WIN7");
+
+            return firefoxOptions;
+        }
+
+        protected override Uri GetUriToRunTests()
+        {
+            return new Uri("http://localhost:50");
         }
     }
 }
