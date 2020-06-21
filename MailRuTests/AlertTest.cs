@@ -62,15 +62,10 @@ namespace MailRuTests
         {
             var firefoxOptions = new FirefoxOptions();
 
-            firefoxOptions.AddAdditionalCapability(CapabilityType.Version, "latest");
-            firefoxOptions.AddAdditionalCapability(CapabilityType.Platform, "WIN7");
+            firefoxOptions.AddAdditionalCapability(CapabilityType.Version, "39");
+            firefoxOptions.AddAdditionalCapability(CapabilityType.Platform, "WIN8_1");
 
             return firefoxOptions;
-        }
-
-        protected override Uri GetUriToRunTests()
-        {
-            return new Uri("http://localhost:50");
         }
     }
 }

@@ -11,6 +11,7 @@ using Allure.NUnit.Attributes;
 using Allure.Commons.Model;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Edge;
 
 namespace MailRuTests
 {
@@ -81,18 +82,22 @@ namespace MailRuTests
 
         protected override DriverOptions GetDriverOptions()
         {
-            var chromeOptions = new ChromeOptions();
+            var edgeOptions = new EdgeOptions();
 
-            chromeOptions.AddAdditionalCapability(CapabilityType.Version, "latest");
-            chromeOptions.AddAdditionalCapability(CapabilityType.EnableProfiling, true);
-            chromeOptions.AddAdditionalCapability(CapabilityType.Platform, "WIN10");
+            edgeOptions.AddAdditionalCapability(CapabilityType.Version, "latest");
+            edgeOptions.AddAdditionalCapability(CapabilityType.Platform, "WIN10");
 
-            return chromeOptions;
+            return edgeOptions;
         }
 
-        protected override Uri GetUriToRunTests()
-        {
-            return new Uri("http://192.168.0.50:8080");
-        }
+        //protected override DriverOptions GetDriverOptions()
+        //{
+        //    var chromeOptions = new ChromeOptions();
+
+        //    chromeOptions.AddAdditionalCapability(CapabilityType.Version, "40");
+        //    chromeOptions.AddAdditionalCapability(CapabilityType.Platform, "LINUX");
+
+        //    return chromeOptions;
+        //}
     }
 }
